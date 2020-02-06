@@ -1,0 +1,58 @@
+﻿@model Sol_Demo.TagHelpers.NotificationTagHelperModel
+
+<style>
+    .divDummay {
+    }
+</style>
+
+@{
+
+    if (Model != null)
+    {
+
+        String notificationTypes = String.Empty;
+
+        if (Model.NotificationTypes == Sol_Demo.TagHelpers.NotificationType.success)
+        {
+            notificationTypes = "success";
+        }
+        else if (Model.NotificationTypes == Sol_Demo.TagHelpers.NotificationType.error)
+        {
+            notificationTypes = "error";
+        }
+        else if (Model.NotificationTypes == Sol_Demo.TagHelpers.NotificationType.warning)
+        {
+            notificationTypes = "warning";
+        }
+
+        <div data-test="Hello">
+        </div>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/alertify/alertify.min.js"></script>
+
+        <script type="text/javascript">
+
+                            //let attrName = 'data-test';
+
+                            //let divObj = $('div[' + attrName + ']').attr(attrName);
+
+                            // console.log(divObj);
+                            //let message = $("#" + divId).data("message");
+                            //console.log(message);
+
+                            //let notificationType = $("#" + divId).data("notificationtypes");
+                            //console.log(notificationType);
+
+                            if ('@Html.Raw(notificationTypes)' === "success") {
+                                alertify.success('@Model.Message');
+                            }
+                            else if ('@Html.Raw(notificationTypes)' === "error") {
+                                alertify.error('@Model.Message');
+                            }
+                            else if ('@Html.Raw(notificationTypes)'=== "warning") {
+                                alertify.warning('@Model.Message');
+                            }
+        </script>
+    }
+}
